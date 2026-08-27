@@ -2,6 +2,18 @@
   "name": "open-terminal-mcp",
   "version": "1.0.0",
   "description": "Remote MCP server exposing Open Terminal (open-webui/open-terminal) as MCP tools over Streamable HTTP",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlankHtmlPage/open-terminal-mcp.git"
+  },
+  "author": "BlankHtmlPage <flurion@tuta.io>",
+  "bugs": {
+    "url": "https://github.com/BlankHtmlPage/open-terminal-mcp/issues"
+  },
+  "homepage": "https://github.com/BlankHtmlPage/open-terminal-mcp#readme",
+  "keywords": ["mcp", "model-context-protocol", "open-terminal", "remote-shell", "express", "typescript"],
+  "files": ["dist"],
   "type": "module",
   "main": "dist/index.js",
   "scripts": {

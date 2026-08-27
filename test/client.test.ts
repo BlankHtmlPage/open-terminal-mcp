@@ -43,7 +43,7 @@ function lastCall(): FetchCall {
 function makeClient(): OpenTerminalClient {
   return new OpenTerminalClient({
     baseUrl: "http://ot.test:8000",
-    apiKey: "sk-test-key",
+    apiKey: "test-key-not-real",
     sessionId: "sess-123",
     userId: "user-1",
     timeoutMs: 5000,
@@ -69,7 +69,7 @@ describe("OpenTerminalClient request shape", () => {
     assert.equal(url, "http://ot.test:8000/execute");
     assert.equal(init.method, "POST");
     const headers = new Headers(init.headers as HeadersInit);
-    assert.equal(headers.get("authorization"), "Bearer sk-test-key");
+    assert.equal(headers.get("authorization"), "Bearer test-key-not-real");
     assert.equal(headers.get("x-session-id"), "sess-123");
     assert.equal(headers.get("x-user-id"), "user-1");
     assert.equal(headers.get("content-type"), "application/json");
@@ -327,7 +327,7 @@ describe("OpenTerminalClient killed-process cache — TTL eviction", () => {
   it("entries expire after killedTtlMs", async () => {
     const client = new OpenTerminalClient({
       baseUrl: "http://ot.test:8000",
-      apiKey: "sk-test-key",
+      apiKey: "test-key-not-real",
       sessionId: "sess-123",
       userId: "user-1",
       timeoutMs: 5000,

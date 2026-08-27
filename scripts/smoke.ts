@@ -13,6 +13,8 @@
  *   OPEN_TERMINAL_API_KEY=bk_... \
  *   npx tsx scripts/smoke.ts
  */
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { OpenTerminalClient } from "../src/open-terminal-client.ts";
 
 const url = process.env.OPEN_TERMINAL_URL?.replace(/\/+$/, "");
@@ -61,7 +63,7 @@ async function main(): Promise<void> {
 
   // 3. Round-trip a file: write, read, delete.
   process.stdout.write("file round-trip\n");
-  const testPath = `/home/user/smoke-${Date.now()}.txt`;
+  const testPath = join(tmpdir(), `smoke-${Date.now()}.txt`);
   await client.writeFile(testPath, "smoke-payload");
   const read = await client.readFile(testPath);
   if (read.kind === "text") {
