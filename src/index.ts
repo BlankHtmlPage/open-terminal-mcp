@@ -64,9 +64,6 @@ function main(): void {
 
   const app = express();
 
-  // Allow large base64-encoded uploads through the MCP JSON body.
-  app.use(express.json({ limit: "50mb" }));
-
   // CORS — set at the hosting layer (the transport sets none itself).
   app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", config.corsOrigin);
@@ -115,7 +112,9 @@ function main(): void {
   });
 
   // MCP endpoint — stateless Streamable HTTP (protocol 2025-03-26).
-  app.post("/mcp", requireAuth, async (req, res) => {
+  // The 50 MB JSON parser is scoped to this route behind auth so unauthenticated
+  // clients cannot force large body parsing (upload_file needs the 50 MB limit).
+  app.post("/mcp", requireAuth, express.json({ limit: "50mb" }), async (req, res) => {
     try {
       const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
       const server = createServer(client);
