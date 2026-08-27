@@ -51,17 +51,7 @@ function loadConfigOrExit(): Config {
   }
 }
 
-function main(): void {
-  const config = loadConfigOrExit();
-
-  const client = new OpenTerminalClient({
-    baseUrl: config.openTerminalUrl,
-    apiKey: config.openTerminalApiKey,
-    sessionId: config.openTerminalSessionId,
-    userId: config.openTerminalUserId,
-    timeoutMs: config.openTerminalTimeoutMs,
-  });
-
+export function createApp(config: Config, client: OpenTerminalClient): express.Express {
   const app = express();
 
   // CORS — set at the hosting layer (the transport sets none itself).
@@ -142,6 +132,22 @@ function main(): void {
   };
   app.get("/mcp", methodNotAllowed);
   app.delete("/mcp", methodNotAllowed);
+
+  return app;
+}
+
+function main(): void {
+  const config = loadConfigOrExit();
+
+  const client = new OpenTerminalClient({
+    baseUrl: config.openTerminalUrl,
+    apiKey: config.openTerminalApiKey,
+    sessionId: config.openTerminalSessionId,
+    userId: config.openTerminalUserId,
+    timeoutMs: config.openTerminalTimeoutMs,
+  });
+
+  const app = createApp(config, client);
 
   const httpServer = app.listen(config.port, config.bindHost, () => {
     if (config.bindHost !== "127.0.0.1" && config.bindHost !== "::1") {
