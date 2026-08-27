@@ -144,11 +144,17 @@ function main(): void {
   app.get("/mcp", methodNotAllowed);
   app.delete("/mcp", methodNotAllowed);
 
-  const httpServer = app.listen(config.port, () => {
+  const httpServer = app.listen(config.port, config.bindHost, () => {
+    if (config.bindHost !== "127.0.0.1" && config.bindHost !== "::1") {
+      process.stderr.write(
+        `WARNING: MCP server is bound to ${config.bindHost} (not loopback). This service grants shell access to anyone with the bearer token and is now reachable beyond localhost. Put it behind TLS and a reverse proxy.\n`,
+      );
+    }
     process.stdout.write(
       JSON.stringify({
         time: new Date().toISOString(),
         event: "listening",
+        host: config.bindHost,
         port: config.port,
         openTerminalUrl: config.openTerminalUrl,
         sessionId: config.openTerminalSessionId,

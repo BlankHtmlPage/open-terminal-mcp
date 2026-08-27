@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 
-const MIN_TOKEN_LEN = 16;
+const MIN_TOKEN_LEN = 32;
 
 function requireEnv(name: string): string {
   const value = process.env[name];
@@ -35,6 +35,8 @@ export interface Config {
   mcpAuthToken: string;
   /** TCP port the MCP HTTP server listens on. */
   port: number;
+  /** Network interface the HTTP server binds to. */
+  bindHost: string;
   /** Outbound fetch timeout to Open Terminal, in milliseconds. */
   openTerminalTimeoutMs: number;
   /** Value of the `Access-Control-Allow-Origin` response header. */
@@ -55,6 +57,7 @@ export function loadConfig(): Config {
     );
   }
   const port = optionalInt("PORT", 3000);
+  const bindHost = process.env.MCP_BIND_HOST && process.env.MCP_BIND_HOST !== "" ? process.env.MCP_BIND_HOST : "127.0.0.1";
   const openTerminalTimeoutMs = optionalInt("OPEN_TERMINAL_TIMEOUT_MS", 30000);
   const corsOrigin = process.env.MCP_CORS_ORIGIN ?? "*";
   const openTerminalUserId =
@@ -71,6 +74,7 @@ export function loadConfig(): Config {
     openTerminalApiKey,
     mcpAuthToken,
     port,
+    bindHost,
     openTerminalTimeoutMs,
     corsOrigin,
     openTerminalUserId,
