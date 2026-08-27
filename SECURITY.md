@@ -43,3 +43,7 @@ This section states what this service is and where the trust boundary sits. Read
 ## Disclosure
 
 We will fix, tag a release, and publish an advisory once a fix is ready. If you reported privately, we will credit you unless you ask not to be.
+
+## AI Usage Disclosure
+
+Parts of this project — including code, documentation, and reviews — were created with AI assistance and reviewed by the maintainer before committing. AI was used as an editor and accelerator, not as an autonomous author. The maintainer takes responsibility for all changes, but you should assume AI-generated code was involved in the initial implementation and treat review accordingly. If you find a vulnerability that traces to AI-generated code, report it as you would any other vulnerability (see Reporting a Vulnerability above).
