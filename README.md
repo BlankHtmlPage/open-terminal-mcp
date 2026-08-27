@@ -5,7 +5,6 @@ Remote MCP server that exposes [Open Terminal](https://github.com/open-webui/ope
 [![ci](https://github.com/BlankHtmlPage/open-terminal-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/BlankHtmlPage/open-terminal-mcp/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![node](https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg)](package.json)
-[![status](https://img.shields.io/badge/status-alpha-orange.svg)](https://github.com/BlankHtmlPage/open-terminal-mcp)
 
 > [!WARNING]
 > This bridge grants arbitrary command execution on the Open Terminal host. Anyone holding `MCP_AUTH_TOKEN` has the equivalent of a shell account. It binds `127.0.0.1` by default — keep it there unless you front it with TLS and a reverse proxy. There is no path confinement in this layer by design, because `run_command` already grants full shell.
