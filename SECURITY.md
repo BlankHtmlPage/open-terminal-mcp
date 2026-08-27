@@ -12,10 +12,8 @@ Only the latest `1.x` release is supported. Older versions, if any, are not.
 
 Preferred: use GitHub private vulnerability reporting for this repo (Security → Report a vulnerability). It keeps the report encrypted and lets us triage without public disclosure.
 
-Alternatives:
-
 - Discord: `blankhtml.page`
-- Email: `flurion@tuta.io` (fallback — already public in commit history)
+- Email: `flurion@tuta.io`
 
 Please include steps to reproduce, impact, and any relevant logs. Do not include tokens, `.env` contents, or real hostnames in the report.
 
