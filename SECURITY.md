@@ -4,9 +4,9 @@
 
 | Version | Supported |
 | --- | --- |
-| 1.x | :white_check_mark: |
+| 1.0.x | :white_check_mark: |
 
-Only the latest `1.x` release is supported. Older versions, if any, are not.
+Only the latest `1.0.x` release is supported. Older versions, if any, are not.
 
 ## Reporting a Vulnerability
 
